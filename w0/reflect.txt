@@ -1,0 +1,1 @@
+I struggled with following step-by-step instructions, as I tend to skip steps and then realize the steps I skipped were important. Such as I skipped the GitHub and Visual Studio sections, then I skipped too much of it and got stuck on a step later down the line.
