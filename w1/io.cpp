@@ -34,8 +34,8 @@ namespace seneca {
         cout << (phoneNumber % 10000) << endl;
     }
 
-    void print(const PhoneRec &pr, size_t &rowNum, const char *filter = nullptr){
-       if(strstr(pr.lastName, filter) != nullptr || filter == nullptr){
+    void print(const PhoneRec &pr, size_t &rowNum, const char *filter){
+       if(filter == nullptr || strstr(pr.lastName, filter) != nullptr){
             cout << rowNum << ": " << pr.firstName << " " << pr.lastName;
             print(pr.phoneNumber);
             rowNum++;
@@ -44,17 +44,17 @@ namespace seneca {
 
     bool read(PhoneRec &pr, FILE *file){
         bool tf;
-        if(fscanf(file, "%s %s %lld", pr.firstName, pr.lastName, pr.phoneNumber) == 3){
+        if(fscanf(file, "%s %s %lld", pr.firstName, pr.lastName, &pr.phoneNumber) == 3){
             tf = true;
         }
         else tf = false;
         return tf;
     }
 
-    void print(PhoneRec *pr[], size_t size, const char *filter = nullptr){
+    void print(PhoneRec *pr[], size_t size, const char *filter){
         size_t rowNum = 1;
         for(int i = 0; i < size; i++){
-            print(pr[i], rowNum, filter);
+            print(*pr[i], rowNum, filter);
         }
     }
 
