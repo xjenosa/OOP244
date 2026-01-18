@@ -35,7 +35,7 @@ namespace seneca {
     }
 
     void print(const PhoneRec &pr, size_t &rowNum, const char *filter){
-       if(strstr(pr.lastName, filter) != nullptr || filter == nullptr){
+       if(filter == nullptr || strstr(pr.lastName, filter) != nullptr){
             cout << rowNum << ": " << pr.firstName << " " << pr.lastName;
             print(pr.phoneNumber);
             rowNum++;
