@@ -18,16 +18,23 @@
 // io.h
 #ifndef SENECA_IO_H
 #define SENECA_IO_H
+#define MAX_FIRSTNAME_LEN 16
+#define MAX_LASTNAME_LEN 26
 
 namespace seneca {
-    struct PhoneRec;
-    void read(char* name);
+    struct PhoneRec {
+        char firstName[MAX_FIRSTNAME_LEN];
+        char lastName[MAX_LASTNAME_LEN];
+        long long phoneNumber;
+    };
+    
+    void read(char *name);
     void print(long long phoneNumber);
-    bool read(PhoneRec& rec, FILE* fp);
-    void print(PhoneRec* records[], size_t size, const char* filter = nullptr);
-    void setPointers(PhoneRec* ptrs[], PhoneRec recs[], size_t size);
-    void print(PhoneRec& record, size_t rowNum, const char* filter = nullptr);
-    void sort(PhoneRec* records[], size_t size);
+    void print(const PhoneRec &pr, size_t &rowNum, const char *filter = nullptr);
+    bool read(PhoneRec &pr, FILE *file);
+    void print(PhoneRec *pr[], size_t size, const char *filter = nullptr);
+    void setPointers(PhoneRec *pr[], PhoneRec records[], size_t size);
+    void sort(PhoneRec *pr[], size_t size, bool flag);
 }
 
 #endif // !SENECA_IO_H

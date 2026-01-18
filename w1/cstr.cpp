@@ -16,7 +16,7 @@
 **************************************************************************************/
 
 // cstr.cpp
-#include <cstddef> // for size_t
+#include <cstdlib> // for size_t
 #include "cstr.h"
 
 namespace seneca {

@@ -17,74 +17,70 @@
 
 // io.cpp
 #include <iostream>
-#include <cstring>
 #include "io.h"
-#define MAX_FIRSTNAME_LEN 15 + 1
-#define MAX_LASTNAME_LEN 25 + 1
+#include "cstr.h"
+using namespace seneca;
 using namespace std;
 
 namespace seneca {
-    struct PhoneRec {
-        char firstName[MAX_FIRSTNAME_LEN];
-        char lastName[MAX_LASTNAME_LEN];
-        long long phoneNumber;
-    };
-
     void read(char *name){
+        cout << "name>\n";
         cin >> name;
     }
 
     void print(long long phoneNumber){
         cout << "(" << (phoneNumber / 10000000) << ") ";
-        cout << ((phoneNumber / 10000) % 1000) << "-";
+        cout << ((phoneNumber % 10000000) / 10000) << "-";
         cout << (phoneNumber % 10000) << endl;
     }
 
-    bool read(PhoneRec &rec, FILE *fp) {
-        return fscanf(fp, "%s %s %lld",
-                    rec.firstName,
-                    rec.lastName,
-                    &rec.phoneNumber) == 3;
+    void print(const PhoneRec &pr, size_t &rowNum, const char *filter = nullptr){
+       if(strstr(pr.lastName, filter) != nullptr || filter == nullptr){
+            cout << rowNum << ": " << pr.firstName << " " << pr.lastName;
+            print(pr.phoneNumber);
+            rowNum++;
+       }
     }
 
-    void print(PhoneRec* records[], size_t size, const char* filter = nullptr) {
-        size_t row = 1;
+    bool read(PhoneRec &pr, FILE *file){
+        bool tf;
+        if(fscanf(file, "%s %s %lld", pr.firstName, pr.lastName, pr.phoneNumber) == 3){
+            tf = true;
+        }
+        else tf = false;
+        return tf;
+    }
 
-        for (size_t i = 0; i < size; i++)
-        {
-            print(*records[i], row, filter);
-            row++;
+    void print(PhoneRec *pr[], size_t size, const char *filter = nullptr){
+        size_t rowNum = 1;
+        for(int i = 0; i < size; i++){
+            print(pr[i], rowNum, filter);
         }
     }
 
-    void setPointers(PhoneRec* ptrs[], PhoneRec recs[], size_t size) {
-        for (size_t i = 0; i < size; i++)
-        {
-            ptrs[i] = &recs[i];
+    void setPointers(PhoneRec *pr[], PhoneRec records[], size_t size){
+        for(int i = 0; i < size; i++){
+            pr[i] = &records[i];
         }
     }
 
-    void sort(PhoneRec* ptrs[], size_t size, bool byLastName) {
-        for (size_t i = 0; i < size - 1; i++)
-        {
-            for (size_t j = i + 1; j < size; j++)
-            {
-                int cmp;
-
-                if (byLastName)
-                {
-                    cmp = strcmp(ptrs[i]->lastName, ptrs[j]->lastName);
+    void sort(PhoneRec *pr[], size_t size, bool flag){
+        PhoneRec *buff;
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(flag){
+                    if(strcmp((*pr[i]).lastName, (*pr[j]).lastName) < 0){
+                        buff = pr[i];
+                        pr[i] = pr[j];
+                        pr[j] = buff;
+                    }
                 }
-                else
-                {
-                    cmp = strcmp(ptrs[i]->firstName, ptrs[j]->firstName);
-                }
-
-                if (cmp > 0)
-                {
-                    PhoneRec* temp = ptrs[i];
-                    ptrs[i] = ptrs[j];
-                    ptrs[j] = temp;
+                else{
+                    if(strcmp((*pr[i]).firstName, (*pr[j]).firstName) < 0){
+                        buff = pr[i];
+                        pr[i] = pr[j];
+                        pr[j] = buff;
+                    }
                 }
             }
         }

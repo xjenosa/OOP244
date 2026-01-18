@@ -18,7 +18,7 @@
 // cstr.h
 #ifndef SENECA_CSTR_H
 #define SENECA_CSTR_H
-#include <cstddef> // for size_t
+#include <cstdlib> // for size_t
 
 namespace seneca {
 char* strcat(char* des, const char* src);
@@ -32,8 +32,8 @@ char* strcpy(char* des, const char* src, size_t len);
 char* strncpy(char* des, const char* src, size_t len);
 size_t strlen(const char* str);
 const char* strstr(const char* str, const char* toFind);
-bool isAlpha(char ch);
-bool isSpace(char ch);
+bool isalpha(char ch);
+bool isspace(char ch);
 }
 
 #endif // !SENECA_CSTR_H
