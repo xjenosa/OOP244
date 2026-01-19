@@ -24,7 +24,7 @@ using namespace std;
 
 namespace seneca {
     void read(char *name){
-        cout << "name>\n";
+        cout << "Name\n";
         cin >> name;
     }
 
@@ -53,21 +53,21 @@ namespace seneca {
 
     void print(PhoneRec *pr[], size_t size, const char *filter){
         size_t rowNum = 1;
-        for(int i = 0; i < size; i++){
+        for(size_t i = 0; i < size; i++){
             print(*pr[i], rowNum, filter);
         }
     }
 
     void setPointers(PhoneRec *pr[], PhoneRec records[], size_t size){
-        for(int i = 0; i < size; i++){
+        for(size_t i = 0; i < size; i++){
             pr[i] = &records[i];
         }
     }
 
     void sort(PhoneRec *pr[], size_t size, bool flag){
         PhoneRec *buff;
-        for(int i = 0; i < size; i++){
-            for(int j = i + 1; j < size; j++){
+        for(size_t i = 0; i < size; i++){
+            for(size_t j = i + 1; j < size; j++){
                 if(flag){
                     if(strcmp((*pr[i]).lastName, (*pr[j]).lastName) > 0){
                         buff = pr[i];
