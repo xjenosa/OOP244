@@ -13,6 +13,12 @@
 * I have done all the coding by myself and only copied the code that my professor
 * provided to complete my workshops and assignments.
 *
+* I have received help from the following students:
+*  - Tuan Khai Ngo / NCC
+*
+* I have helped the following students:
+*  - Christian Rafael / NCC
+*
 **************************************************************************************/
 
 // cstr.h
