@@ -29,13 +29,13 @@ namespace seneca {
     }
 
     void print(long long phoneNumber){
-        cout << "(" << (phoneNumber / 10000000) << ") ";
+        cout << " (" << (phoneNumber / 10000000) << ") ";
         cout << ((phoneNumber % 10000000) / 10000) << "-";
         cout << (phoneNumber % 10000) << endl;
     }
 
-    void print(const PhoneRec &pr, size_t &rowNum, const char *filter = nullptr){
-       if(strstr(pr.lastName, filter) != nullptr || filter == nullptr){
+    void print(const PhoneRec &pr, size_t &rowNum, const char *filter){
+       if(filter == nullptr || strstr(pr.lastName, filter) != nullptr || strstr(pr.firstName, filter) != nullptr){
             cout << rowNum << ": " << pr.firstName << " " << pr.lastName;
             print(pr.phoneNumber);
             rowNum++;
@@ -44,17 +44,17 @@ namespace seneca {
 
     bool read(PhoneRec &pr, FILE *file){
         bool tf;
-        if(fscanf(file, "%s %s %lld", pr.firstName, pr.lastName, pr.phoneNumber) == 3){
+        if(fscanf(file, "%s %s %lld", pr.firstName, pr.lastName, &pr.phoneNumber) == 3){
             tf = true;
         }
         else tf = false;
         return tf;
     }
 
-    void print(PhoneRec *pr[], size_t size, const char *filter = nullptr){
+    void print(PhoneRec *pr[], size_t size, const char *filter){
         size_t rowNum = 1;
         for(int i = 0; i < size; i++){
-            print(pr[i], rowNum, filter);
+            print(*pr[i], rowNum, filter);
         }
     }
 
@@ -69,14 +69,14 @@ namespace seneca {
         for(int i = 0; i < size; i++){
             for(int j = i + 1; j < size; j++){
                 if(flag){
-                    if(strcmp((*pr[i]).lastName, (*pr[j]).lastName) < 0){
+                    if(strcmp((*pr[i]).lastName, (*pr[j]).lastName) > 0){
                         buff = pr[i];
                         pr[i] = pr[j];
                         pr[j] = buff;
                     }
                 }
                 else{
-                    if(strcmp((*pr[i]).firstName, (*pr[j]).firstName) < 0){
+                    if(strcmp((*pr[i]).firstName, (*pr[j]).firstName) > 0){
                         buff = pr[i];
                         pr[i] = pr[j];
                         pr[j] = buff;
