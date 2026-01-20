@@ -39,7 +39,7 @@ namespace seneca {
     void print(long long phoneNumber);
     void print(const PhoneRec &pr, size_t &rowNum, const char *filter = nullptr);
     bool read(PhoneRec &pr, FILE *file);
-    void print(const PhoneRec *pr[], size_t size, const char *filter = nullptr);
+    void print(PhoneRec *pr[], size_t size, const char *filter = nullptr);
     void setPointers(PhoneRec *pr[], PhoneRec records[], size_t size);
     void sort(PhoneRec *pr[], size_t size, bool flag);
 }

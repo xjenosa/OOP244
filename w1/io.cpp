@@ -57,7 +57,7 @@ namespace seneca {
         return tf;
     }
 
-    void print(const PhoneRec *pr[], size_t size, const char *filter){
+    void print(PhoneRec *pr[], size_t size, const char *filter){
         size_t rowNum = 1;
         for(size_t i = 0; i < size; i++){
             print(*pr[i], rowNum, filter);
