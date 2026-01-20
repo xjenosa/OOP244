@@ -34,15 +34,16 @@ namespace seneca {
     }
 
     void print(long long phoneNumber){
-        cout << " (" << (phoneNumber / 10000000) << ") ";
+        cout << "(" << (phoneNumber / 10000000) << ") ";
         cout << ((phoneNumber % 10000000) / 10000) << "-";
-        cout << (phoneNumber % 10000) << endl;
+        cout << (phoneNumber % 10000);
     }
 
     void print(const PhoneRec &pr, size_t &rowNum, const char *filter){
        if(filter == nullptr || strstr(pr.lastName, filter) != nullptr || strstr(pr.firstName, filter) != nullptr){
-            cout << rowNum << ": " << pr.firstName << " " << pr.lastName;
+            cout << rowNum << ": " << pr.firstName << " " << pr.lastName << " ";
             print(pr.phoneNumber);
+            cout << endl;
             rowNum++;
        }
     }
@@ -56,7 +57,7 @@ namespace seneca {
         return tf;
     }
 
-    void print(PhoneRec *pr[], size_t size, const char *filter){
+    void print(const PhoneRec *pr[], size_t size, const char *filter){
         size_t rowNum = 1;
         for(size_t i = 0; i < size; i++){
             print(*pr[i], rowNum, filter);
@@ -71,17 +72,17 @@ namespace seneca {
 
     void sort(PhoneRec *pr[], size_t size, bool flag){
         PhoneRec *buff;
-        for(size_t i = 0; i < size; i++){
+        for(size_t i = 0; i < size - 1; i++){
             for(size_t j = i + 1; j < size; j++){
                 if(flag){
-                    if(strcmp((*pr[i]).lastName, (*pr[j]).lastName) > 0){
+                    if(strcmp(pr[i]->lastName, pr[j]->lastName) > 0){
                         buff = pr[i];
                         pr[i] = pr[j];
                         pr[j] = buff;
                     }
                 }
                 else{
-                    if(strcmp((*pr[i]).firstName, (*pr[j]).firstName) > 0){
+                    if(strcmp(pr[i]->firstName, pr[j]->firstName) > 0){
                         buff = pr[i];
                         pr[i] = pr[j];
                         pr[j] = buff;
