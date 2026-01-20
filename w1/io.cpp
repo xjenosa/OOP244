@@ -22,7 +22,6 @@
 **************************************************************************************/
 
 // io.cpp
-#include <iostream>
 #include "io.h"
 #include "cstr.h"
 using namespace seneca;

@@ -26,6 +26,7 @@
 #define SENECA_IO_H
 #define MAX_FIRSTNAME_LEN 16
 #define MAX_LASTNAME_LEN 26
+#include <iostream>
 
 namespace seneca {
     struct PhoneRec {

@@ -24,7 +24,7 @@
 // cstr.h
 #ifndef SENECA_CSTR_H
 #define SENECA_CSTR_H
-#include <cstdlib> // for size_t
+#include <cstddef> // for size_t
 
 namespace seneca {
 char* strcat(char* des, const char* src);
