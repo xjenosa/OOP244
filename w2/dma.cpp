@@ -13,6 +13,9 @@
 * I have done all the coding by myself and only copied the code that my professor
 * provided to complete my workshops and assignments.
 *
+* I used AI to help me with the following:
+*  - Debugging and format optimization, as to why my outputs don't match the expected results.
+*
 **************************************************************************************/
 
 #include "cstr.h"
