@@ -21,7 +21,7 @@
 namespace seneca{
     struct Samples *CreateSamples(const char *title){
         Samples *s = new Samples;
-        s->m_title = new char[strlen(title)]; // could be title + 1
+        s->m_title = new char[strlen(title) + 1]; // could be title + 1
         strcpy(s->m_title, title);
         s->m_data = nullptr;
         s->m_size = 0;
