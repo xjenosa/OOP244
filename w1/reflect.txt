@@ -1,5 +1,25 @@
+what i learned:
+
+1. % 10 is to collect the numbers in the end of the int, / is to remove numbers
+
+2. default value of nullptr, use of strstr function
+
+3. passing reference values, and accessing values from it
+
+4. what an array pointer is, never seen one, or don't remember what it is
+
+5. using pointers as a shortcut to reroute values
+
+6. sorting the proper way using pointers, unlike what i did for project 2 in ipc where i used my less efficient sorting logic
+
+difficulties:
+
+- i got guidance from my friend in a different section, not gonna lie he carried me for the first workshop
+
+feedback:
+
 1. fardad's instructions compared to kathy's is wayyyyy unclear. idk if it's because the lack of using ai, or too much use of it. it was entirely a fever-dream for me, idk what i was doing most of the time.
+
 2. the amount of work it took for workshop 1 is too much. i can see how students with no coding experience fail this class from the first week. you are already bombarded with headaches first week.
+
 3. oop workshop 1 is roughly the length of ipc project 1. you're only given 1 week to do a whole project, with very little guidance.
-4. honestly, you are really good at explaining the theoretical concepts and preparing students for the bi-weekly quizzes. because of that, most of the time is spent on the slide deck rather than a lecture doing it practically.
-5. i would appreciate it if you could demonstrate certain sections of the weekly workshops instead of having time wasted on bi-weekly quizzes. accounting does it with 2 regular exams, 1 midterm, and 1 final. To be continued...
