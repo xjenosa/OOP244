@@ -1,1 +1,12 @@
+1. learned
+- i thought you need to deallocate within the function scope, and not block scope.
+i deallocated immediately at first, but then it didn't run using the tester.
+then i scrolled down and there's a freemem function.
+i must've missed something about dealloc scopes during the lecture.
 
+2. difficulties
+- the error message given by matrix isn't helpful if you're missing a +1 for dynamic allocation.
+
+3. suggestions
+- for CreateSamples function, second bullet point, maybe explicitly say that the dynamic allocation should be +1.
+- there is an inconcistency with the difficulty level. workshop 2 is easy compared to workshop 1.
