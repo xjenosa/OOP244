@@ -1,0 +1,11 @@
+learned:
+
+
+difficulties:
+- why doesn't the private function "Deallocating the Dynamic Memory" clear() also set all the other values to zero?
+- "set object to empty state" you are trying so hard not to say "use the clear() function"
+
+feedback:
+- instruction to public method set() only instructs to set name to nullptr.
+it can also specify to use the clear() function to avoid code repitition.
+- please be less vague with "set object to empty state"
