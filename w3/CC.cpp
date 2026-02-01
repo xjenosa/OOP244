@@ -13,6 +13,9 @@
 * I have done all the coding by myself and only copied the code that my professor
 * provided to complete my workshops and assignments.
 *
+* I used AI to help me with the following:
+*  - Debugging and format optimization, as to why my outputs don't match the expected results.
+*
 **************************************************************************************/
 
 #include <iostream>
@@ -46,7 +49,8 @@ namespace seneca {
    }
    bool CC::validate(const char *name, unsigned long long cardNo, short cvv, short expMon, short expYear) const {
       bool valid = true;
-      if (name == nullptr || strlen(name) > 2) { // || name[0] == '\0'
+      if (name == nullptr || strlen(name) < 2) { // ai fixed here, used to be strlen > 2
+         // maybe || name[0] == '\0' 
          valid = false;
       }
       if (cardNo < 4000000000000000ull || cardNo > 4099999999999999ull) {
@@ -80,7 +84,7 @@ namespace seneca {
       cout.fill(' ');
    }
    void CC::set() {
-      m_name = nullptr; // could be clear();
+      m_name = nullptr; // maybe clear();
       m_cvv = 0;
       m_expMon = 0;
       m_expYear = 0;
@@ -97,7 +101,7 @@ namespace seneca {
       return empty;
    }
    void CC::set(const char *cc_name, unsigned long long cc_no, short cvv, short expMon, short expYear) {
-      clear(); // could be wrong
+      clear(); // could be wrong, set to empty state
       if (validate(cc_name, cc_no, cvv, expMon, expYear)) {
          aloCopy(cc_name);
          m_number = cc_no;

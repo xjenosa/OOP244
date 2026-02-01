@@ -1,11 +1,14 @@
 learned:
-
+- using private members in classes.
+- checking for memory leaks.
+- trial and error where i should and shouldn't use clear malloc.
 
 difficulties:
 - why doesn't the private function "Deallocating the Dynamic Memory" clear() also set all the other values to zero?
-- "set object to empty state" you are trying so hard not to say "use the clear() function"
+- "set object to empty state" you are trying so hard not to say "use the clear() function".
+- using ai has sped up the debugging process, i initially used >2 set false instead of <2.
 
 feedback:
 - instruction to public method set() only instructs to set name to nullptr.
 it can also specify to use the clear() function to avoid code repitition.
-- please be less vague with "set object to empty state"
+- please be less vague with "set object to empty state".
