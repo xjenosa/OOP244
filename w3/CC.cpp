@@ -46,7 +46,7 @@ namespace seneca {
    }
    bool CC::validate(const char *name, unsigned long long cardNo, short cvv, short expMon, short expYear) const {
       bool valid = true;
-      if (name == nullptr || strlen(name) > 2) { // || name[0] == '\0'
+      if (name == nullptr || strlen(name) < 2) { // || name[0] == '\0'
          valid = false;
       }
       if (cardNo < 4000000000000000ull || cardNo > 4099999999999999ull) {
