@@ -50,7 +50,6 @@ namespace seneca {
    bool CC::validate(const char *name, unsigned long long cardNo, short cvv, short expMon, short expYear) const {
       bool valid = true;
       if (name == nullptr || strlen(name) < 2) { // ai fixed here, used to be strlen > 2
-         // maybe || name[0] == '\0' 
          valid = false;
       }
       if (cardNo < 4000000000000000ull || cardNo > 4099999999999999ull) {
@@ -120,14 +119,6 @@ namespace seneca {
       else {
          display(m_name, m_number, m_expYear, m_expMon, m_cvv);
       }
-      // else {
-      //    cout << "| " ;
-      //    cout.width(66);
-      //    cout.fill(' ');
-      //    cout.setf(ios::left);
-      //    cout << "Invalid Credit Card Record" << " |" << endl;
-      //    cout.unsetf(ios::left);
-      // }
    }
    CC::CC() {
       // do i need clear() here?
