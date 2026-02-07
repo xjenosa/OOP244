@@ -100,7 +100,7 @@ namespace seneca {
       return empty;
    }
    void CC::set(const char *cc_name, unsigned long long cc_no, short cvv, short expMon, short expYear) {
-      clear(); // could be wrong, set to empty state
+      set(); // clear() could be wrong, set to empty state
       if (validate(cc_name, cc_no, cvv, expMon, expYear)) {
          aloCopy(cc_name);
          m_number = cc_no;
@@ -122,15 +122,11 @@ namespace seneca {
    }
    CC::CC() {
       // do i need clear() here?
-      m_name = nullptr;
-      m_cvv = 0;
-      m_expMon = 0;
-      m_expYear = 0;
-      m_number = 0;
+      set();
    }
    CC::CC(const char *cc_name, unsigned long long cc_no, short cvv, short expMon, short expYear) {
       // do i need clear() here?
-      m_name = nullptr;
+      set();
       if(validate(cc_name, cc_no, cvv, expMon, expYear)){
          aloCopy(cc_name);
          m_number = cc_no;

@@ -42,7 +42,6 @@ namespace seneca {
       CC(const char *cc_name, unsigned long long cc_no, short cvv, short expMon = 12, short expYear = 26);
       ~CC();
    };
-
 }
 #endif // !SENECA_CC_H_
 
