@@ -31,6 +31,9 @@
 * I have done all the coding by myself and only copied the code that my professor
 * provided to complete my workshops and assignments.
 *
+* I have received help from the following students:
+*  - Christian Rafael / NCC
+*
 * I used AI to help me with the following:
 *  - Debugging and format optimization, as to why my outputs don't match the expected results.
 *
@@ -105,7 +108,7 @@ namespace seneca {
       return cout;
    }
    Account::operator bool() const {
-    return isValidNumber(m_number) && m_balance >= 0 && m_holderName[0] != '\0';
+    return isValidNumber(m_number);
    }
 
    Account::operator int() const {
@@ -119,40 +122,33 @@ namespace seneca {
    Account::operator const char* () const {
       return m_holderName;
    }
-   char &Account::operator[](int index) {
-      int length = std::strlen(m_holderName);
-      if (length > 0) {
-         while (index >= length) {
-            index -= length;
-         }
-         while (index < 0) {
-            index += length;
-         }
+   char& Account::operator[](int index) {
+      int len = strlen(m_holderName);
+      if (len > 0) {
+         index %= len;
+         if (index < 0) index += len;
       } else {
          index = 0;
       }
       return m_holderName[index];
    }
-   char Account::operator[](int index) const {
-      int length = std::strlen(m_holderName);
-      if (length > 0) {
-         while (index >= length) {
-            index -= length;
-         }
-
-         while (index < 0) {
-            index += length;
-         }
+   const char Account::operator[](int index) const {
+      int len = strlen(m_holderName);
+      if (len > 0) {
+         index %= len;
+         if (index < 0) index += len;
       } else {
          index = 0;
       }
       return m_holderName[index];
    }
    Account &Account::operator=(int value) {
-      if(isValidNumber(value)) {
-         m_number = value;
-      } else {
-         m_number = -1;
+      if(m_number == 0) {
+         if(isValidNumber(value)) {
+            m_number = value;
+         } else {
+            m_number = -1;
+         }
       }
       return *this;
    }
@@ -171,11 +167,8 @@ namespace seneca {
       return *this;
    }
    Account &Account::operator-=(double value){
-      if(value > 0) {
+      if(value > 0 && m_balance >= value) {
          m_balance -= value;
-         if(m_balance < 0) {
-            m_balance = 0.0;
-         }
       }
       return *this;
    }
@@ -196,7 +189,7 @@ namespace seneca {
       return *this;
    }
    bool Account::operator~() const{
-      return *this && m_balance == 0.0;
+      return m_holderName[0] != '\0' && m_number != 0 && m_balance == 0.0;
    }
    Account& Account::operator++(){ // prefix
       if(*this) {

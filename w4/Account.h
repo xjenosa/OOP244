@@ -58,7 +58,7 @@ namespace seneca {
       operator double() const;
       operator const char* () const;
       char &operator[](int index);
-      char operator[](int index) const;
+      const char operator[](int index) const;
       Account &operator=(int value);
       Account &operator=(double value);
       Account &operator+=(double value);
