@@ -120,39 +120,50 @@ namespace seneca {
       return m_holderName;
    }
    char &Account::operator[](int index) {
+      static char dummy = '\0';
       int length = std::strlen(m_holderName);
-      if (length > 0) {
-         while (index >= length) {
-            index -= length;
-         }
-         while (index < 0) {
-            index += length;
-         }
-      } else {
-         index = 0;
+      if (length == 0) {
+         return dummy;
       }
+      
+      // Handle negative indices with wrapping
+      while (index < 0) {
+         index += length;
+      }
+      
+      // Return reference to dummy for indices beyond the string
+      if (index >= length) {
+         dummy = '\0';
+         return dummy;
+      }
+      
       return m_holderName[index];
    }
    char Account::operator[](int index) const {
       int length = std::strlen(m_holderName);
-      if (length > 0) {
-         while (index >= length) {
-            index -= length;
-         }
-
-         while (index < 0) {
-            index += length;
-         }
-      } else {
-         index = 0;
+      if (length == 0) {
+         return '\0';
       }
+      
+      // Handle negative indices with wrapping
+      while (index < 0) {
+         index += length;
+      }
+      
+      // Return null terminator for indices beyond the string
+      if (index >= length) {
+         return '\0';
+      }
+      
       return m_holderName[index];
    }
    Account &Account::operator=(int value) {
-      if(isValidNumber(value)) {
-         m_number = value;
-      } else {
-         m_number = -1;
+      if(m_number == 0 || m_number == -1) {
+         if(isValidNumber(value)) {
+            m_number = value;
+         } else {
+            m_number = -1;
+         }
       }
       return *this;
    }
@@ -171,11 +182,8 @@ namespace seneca {
       return *this;
    }
    Account &Account::operator-=(double value){
-      if(value > 0) {
+      if(value > 0 && m_balance >= value) {
          m_balance -= value;
-         if(m_balance < 0) {
-            m_balance = 0.0;
-         }
       }
       return *this;
    }
@@ -196,7 +204,7 @@ namespace seneca {
       return *this;
    }
    bool Account::operator~() const{
-      return *this && m_balance == 0.0;
+      return m_holderName[0] != '\0' && m_number == 0 && m_balance == 0.0;
    }
    Account& Account::operator++(){ // prefix
       if(*this) {
