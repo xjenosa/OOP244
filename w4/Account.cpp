@@ -41,8 +41,6 @@
 
 using namespace std;
 namespace seneca {
- 
-
    void Account::cpyName(const char* src) {
       int i;
       for (i = 0; src && src[i] && i < NameMaxLen; i++) {
@@ -106,6 +104,130 @@ namespace seneca {
       }
       return cout;
    }
+   Account::operator bool() const {
+    return isValidNumber(m_number) && m_balance >= 0 && m_holderName[0] != '\0';
+   }
 
-   
+   Account::operator int() const {
+      return m_number;
+   }
+
+   Account::operator double() const {
+      return m_balance;
+   }
+
+   Account::operator const char* () const {
+      return m_holderName;
+   }
+   char &Account::operator[](int index) {
+      int length = std::strlen(m_holderName);
+      if (length > 0) {
+         while (index >= length) {
+            index -= length;
+         }
+         while (index < 0) {
+            index += length;
+         }
+      } else {
+         index = 0;
+      }
+      return m_holderName[index];
+   }
+   char Account::operator[](int index) const {
+      int length = std::strlen(m_holderName);
+      if (length > 0) {
+         while (index >= length) {
+            index -= length;
+         }
+
+         while (index < 0) {
+            index += length;
+         }
+      } else {
+         index = 0;
+      }
+      return m_holderName[index];
+   }
+   Account &Account::operator=(int value) {
+      if(isValidNumber(value)) {
+         m_number = value;
+      } else {
+         m_number = -1;
+      }
+      return *this;
+   }
+   Account &Account::operator=(double value){
+      if(value >= 0) {
+         m_balance = value;
+      } else {
+         m_balance = 0.0;
+      }
+      return *this;
+   }
+   Account &Account::operator+=(double value){
+      if(value > 0) {
+         m_balance += value;
+      }
+      return *this;
+   }
+   Account &Account::operator-=(double value){
+      if(value > 0) {
+         m_balance -= value;
+         if(m_balance < 0) {
+            m_balance = 0.0;
+         }
+      }
+      return *this;
+   }
+   Account &Account::operator<<(Account& other){
+      if(this != &other && other) {
+         double transferAmount = other.m_balance;
+         m_balance += transferAmount;
+         other.m_balance = 0.0;
+      }
+      return *this;
+   }
+   Account &Account::operator>>(Account& other){
+      if(this != &other && other) {
+         double transferAmount = m_balance;
+         other.m_balance += transferAmount;
+         m_balance = 0.0;
+      }
+      return *this;
+   }
+   bool Account::operator~() const{
+      return *this && m_balance == 0.0;
+   }
+   Account& Account::operator++(){ // prefix
+      if(*this) {
+         m_balance += 1.0;
+      }
+      return *this;
+   }
+   Account Account::operator++(int){ // postfix
+      Account temp = *this;
+      if(*this) {
+         m_balance += 1.0;
+      }
+      return temp;
+   }
+   Account& Account::operator--(){ // prefix
+      if(*this) {
+         m_balance -= 1.0;
+         if(m_balance < 0) {
+            m_balance = 0.0;
+         }
+      }
+      return *this;
+   }
+   Account Account::operator--(int){ // postfix
+      Account temp = *this;
+      if(*this) {
+         m_balance -= 1.0;
+         if(m_balance < 0) {
+            m_balance = 0.0;
+         }
+      }
+      return temp;
+   }
 }

@@ -31,6 +31,7 @@
 * provided to complete my workshops and assignments.
 *
 * I used AI to help me with the following:
+*  - Subscription (Index) Member Operators, not included in course notes
 *  - Debugging and format optimization, as to why my outputs don't match the expected results.
 *
 **************************************************************************************/
@@ -38,6 +39,7 @@
 #ifndef SENECA_ACCOUNT_H_
 #define SENECA_ACCOUNT_H_
 #include <iostream>
+#include <cstring>
 
 namespace seneca {
    const int NameMaxLen = 30;
@@ -51,10 +53,23 @@ namespace seneca {
       Account(const char* holderName = nullptr);
       Account(const char* holderName, int number, double balance);
       std::ostream& display()const;
-
-
+      operator bool() const;
+      operator int() const;
+      operator double() const;
+      operator const char* () const;
+      char &operator[](int index);
+      char operator[](int index) const;
+      Account &operator=(int value);
+      Account &operator=(double value);
+      Account &operator+=(double value);
+      Account &operator-=(double value);
+      Account &operator<<(Account& other);
+      Account &operator>>(Account& other);
+      bool operator~() const;
+      Account &operator++(); // prefix
+      Account operator++(int); // postfix
+      Account &operator--(); // prefix
+      Account operator--(int); // postfix
    };
-  
-
 }
 #endif // SENECA_ACCOUNT_H_
