@@ -124,21 +124,19 @@ namespace seneca {
    }
    char& Account::operator[](int index) {
       int len = strlen(m_holderName);
-      if (len > 0) {
-         index %= len;
-         if (index < 0) index += len;
-      } else {
+      if (index < 0) {
          index = 0;
+      } else if (index > len) {
+         index = len;
       }
       return m_holderName[index];
    }
    const char Account::operator[](int index) const {
       int len = strlen(m_holderName);
-      if (len > 0) {
-         index %= len;
-         if (index < 0) index += len;
-      } else {
+      if (index < 0) {
          index = 0;
+      } else if (index > len) {
+         index = len;
       }
       return m_holderName[index];
    }
@@ -189,7 +187,7 @@ namespace seneca {
       return *this;
    }
    bool Account::operator~() const{
-      return m_holderName[0] != '\0' && m_number != 0 && m_balance == 0.0;
+      return m_holderName[0] != '\0' && m_number == 0 && m_balance == 0.0;
    }
    Account& Account::operator++(){ // prefix
       if(*this) {
