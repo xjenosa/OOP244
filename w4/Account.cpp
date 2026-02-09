@@ -126,7 +126,8 @@ namespace seneca {
       int len = strlen(m_holderName);
       if (index < 0) {
          index = 0;
-      } else if (index > len) {
+      }
+      else if (index > len) {
          index = len;
       }
       return m_holderName[index];
@@ -135,7 +136,8 @@ namespace seneca {
       int len = strlen(m_holderName);
       if (index < 0) {
          index = 0;
-      } else if (index > len) {
+      }
+      else if (index > len) {
          index = len;
       }
       return m_holderName[index];
@@ -144,7 +146,8 @@ namespace seneca {
       if(m_number == 0) {
          if(isValidNumber(value)) {
             m_number = value;
-         } else {
+         }
+         else {
             m_number = -1;
          }
       }
@@ -153,7 +156,8 @@ namespace seneca {
    Account &Account::operator=(double value){
       if(value >= 0) {
          m_balance = value;
-      } else {
+      }
+      else {
          m_balance = 0.0;
       }
       return *this;
