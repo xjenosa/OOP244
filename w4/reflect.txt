@@ -1,0 +1,9 @@
+learned:
+- Subscription (Index) Member Operators isn't in the course notes, and not taught in class, so I had to learn that on my own.
+
+difficulties:
+- Again, another workshop with poorly written instructions, I don't know what Fardad wants in the Subscription Member Operators specifically.
+- AI had to fix my code for me, as I was stuck only on that section. AI fixed it by completely ignoring the "out of bounds and looping it back" requirement, or else the output won't exactly match.
+
+feedback:
+- If AI fixed it by ignoring the instructions, maybe delete the "looping back" instruction.
