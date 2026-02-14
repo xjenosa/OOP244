@@ -19,7 +19,7 @@
 *
 * Student Name : Maximilian Ali
 * Student Email : mali291@myseneca.ca
-* Workshop #  : 3
+* Workshop #  : 5
 * Course/Section: OOP244/NRA
 *
 * I declare that this assignment is my own work in accordance with the Seneca Academic
