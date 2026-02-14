@@ -1,0 +1,15 @@
+learned:
+- i wouldn't have been able to complete this workshop without ai fixing my code entirely.
+- i can complete 80% of it, but the rest is finding a needle in a haystack.
+- i had syntax error for std::cout, which made me delete the default values of output stream, so it wasn't per instructions.
+
+difficulties:
+- i don't know what ai was smoking with the non-member display helper function.
+- sure the output is given, but the logic that ai created seems to store temp values? i don't get it.
+- line 184, why did ai input stream >> value??
+- adding and subtracting double uses mark.raw(), not in course notes, i'm sure other students have to find a workaround themselves.
+
+feedback:
+- nick did a good job with the presentation in-class. however, what came out in the lab is a different beast.
+- so far with oop, there has been no spoon-feeding on how to complete the labs.
+- i have been using ai to spoon-feed me the answers instead.
