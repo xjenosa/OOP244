@@ -13,6 +13,27 @@
 //
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
+
+/*************************************************************************************
+* OOP244 - 2261
+*
+* Student Name : Maximilian Ali
+* Student Email : mali291@myseneca.ca
+* Workshop #  : 3
+* Course/Section: OOP244/NRA
+*
+* I declare that this assignment is my own work in accordance with the Seneca Academic
+* Policy. No part of this assignment has been copied manually or electronically from/to
+* any other source (including web sites) or distributed to other students.
+*
+* I have done all the coding by myself and only copied the code that my professor
+* provided to complete my workshops and assignments.
+*
+* I used AI to help me with the following:
+*  - Debugging and format optimization, as to why my outputs don't match the expected results.
+*
+**************************************************************************************/
+
 #include <iostream>
 #include <iomanip>
 #include <cmath> // for round function
@@ -126,23 +147,27 @@ namespace seneca {
             os << "***";
          }
       }
-      if(m_type == GPA){
+      else if(m_type == GPA){
          os << fixed << setprecision(1) << setw(3) << (double)(*this);
       }
-      if(m_type == MARK){
+      else if(m_type == MARK){
          os << right << setfill('_') << setw(3) << (int)(*this);
       }
-      if(m_type == GRADE){
+      else if(m_type == GRADE){
          os << left << setfill(' ') << setw(3) << (const char*)(*this);
       }
       return os;
    }
 
-   ostream& display(const Mark &mark, char type, std::ostream& os){
-      mark.display(os);
+   ostream& display(const Mark &mark, char type, std::ostream& os){ // ai fixed this for me, completely different from fardad instructions
+      Mark temp = mark;
+      temp = MARK;
+      temp.display(os);
       if(type != MARK){
          os << ": ";
-         mark.display(os);
+         temp = mark;
+         temp = type;
+         temp.display(os);
       }
       return os;
    }
@@ -156,13 +181,14 @@ namespace seneca {
       char nextChar = '\0';
       bool run = true;
       while (run) {
-         if (is.fail()) {
+         is >> value; // different from fardad instructions
+         if (is.fail()) { // had to find this in course notes
             cout << "Invalid integer, try again.\n> ";
             is.clear();
             is.ignore(10000, '\n');
          }
          else {
-            nextChar = is.get();
+            nextChar = is.get(); // had to find this in course notes
             if (nextChar != '\n') {
                cout << "Invalid trailing characters. Please enter only an integer.\n> ";
                is.ignore(10000, '\n');
