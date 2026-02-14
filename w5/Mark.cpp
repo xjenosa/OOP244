@@ -14,6 +14,7 @@
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #include <iostream>
+#include <iomanip>
 #include <cmath> // for round function
 #include "Mark.h"
 using namespace std;
@@ -116,7 +117,103 @@ namespace seneca {
    }
 
    // student helper function implementations go here
+   ostream& Mark::display(ostream& os) const{
+      if(!isValid()) {
+         if(m_type == GRADE){
+            os << "**";
+         }
+         else{
+            os << "***";
+         }
+      }
+      if(m_type == GPA){
+         os << fixed << setprecision(1) << setw(3) << (double)(*this);
+      }
+      if(m_type == MARK){
+         os << right << setfill('_') << setw(3) << (int)(*this);
+      }
+      if(m_type == GRADE){
+         os << left << setfill(' ') << setw(3) << (const char*)(*this);
+      }
+      return os;
+   }
 
+   ostream& display(const Mark &mark, char type, std::ostream& os){
+      mark.display(os);
+      if(type != MARK){
+         os << ": ";
+         mark.display(os);
+      }
+      return os;
+   }
 
+   ostream& operator<<(ostream& os, const Mark& mark){
+      return mark.display(os);
+   }
 
+   istream& operator>>(istream& is, Mark& mark) {
+      int value = 0;
+      char nextChar = '\0';
+      bool run = true;
+      while (run) {
+         if (is.fail()) {
+            cout << "Invalid integer, try again.\n> ";
+            is.clear();
+            is.ignore(10000, '\n');
+         }
+         else {
+            nextChar = is.get();
+            if (nextChar != '\n') {
+               cout << "Invalid trailing characters. Please enter only an integer.\n> ";
+               is.ignore(10000, '\n');
+            }
+            else {
+               if (value < 0 || value > 100) {
+                  cout << "Invalid mark. Enter a value between 0 and 100.\n> ";
+               }
+               else {
+                  mark = value;
+                  run = false;
+               }
+            }
+         }
+      }
+      return is;
+   }
+
+   ifstream& operator>>(ifstream& ifs, Mark& mark){
+      int value = 0;
+      char comma = '\0';
+      char type = '\0';
+      ifs >> value >> comma >> type;
+      if(ifs && comma == ','){
+         mark = value;
+         mark = type;
+      }
+      return ifs;
+   }
+
+   double operator+(double value, const Mark& mark){
+      return value + double(mark);
+   }
+
+   int operator+(int value, const Mark& mark){
+      return value + int(mark);
+   }
+
+   double operator-(double value, const Mark& mark){
+      return value - double(mark);
+   }
+
+   int operator-(int value, const Mark& mark){
+      return value - int(mark);
+   }
+
+   double operator/(double value, const Mark& mark){
+      return value / double(mark.m_value);
+   }
+
+   int operator/(int value, const Mark& mark){
+      return value / int(mark.m_value + 0.5);
+   }
 }
