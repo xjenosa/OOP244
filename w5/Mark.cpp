@@ -220,7 +220,7 @@ namespace seneca {
    }
 
    double operator+(double value, const Mark& mark){
-      return value + double(mark);
+      return value + mark.raw(); // testing if ai works
    }
 
    int operator+(int value, const Mark& mark){
@@ -228,7 +228,7 @@ namespace seneca {
    }
 
    double operator-(double value, const Mark& mark){
-      return value - double(mark);
+      return value - mark.raw(); // testing if ai works
    }
 
    int operator-(int value, const Mark& mark){
