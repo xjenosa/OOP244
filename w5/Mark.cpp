@@ -133,7 +133,9 @@ namespace seneca {
          os << right << setfill('_') << setw(3) << (int)(*this);
       }
       else if(m_type == GRADE){
-         // Reset fill to space and use left justification
+         // Spec requires: width 3, left-justify, fill with spaces
+         // Note: Reference output shows inconsistent behavior - no trailing spaces in displayTest
+         // but 2 spaces in insertionHelperTest. Following spec for consistent implementation.
          os << setfill(' ') << left << setw(3) << (const char*)(*this);
       }
       return os;
