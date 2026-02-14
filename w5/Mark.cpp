@@ -126,23 +126,28 @@ namespace seneca {
             os << "***";
          }
       }
-      if(m_type == GPA){
+      else if(m_type == GPA){
          os << fixed << setprecision(1) << setw(3) << (double)(*this);
       }
-      if(m_type == MARK){
+      else if(m_type == MARK){
          os << right << setfill('_') << setw(3) << (int)(*this);
       }
-      if(m_type == GRADE){
-         os << left << setfill(' ') << setw(3) << (const char*)(*this);
+      else if(m_type == GRADE){
+         // Reset fill to space and use left justification
+         os << setfill(' ') << left << setw(3) << (const char*)(*this);
       }
       return os;
    }
 
    ostream& display(const Mark &mark, char type, std::ostream& os){
-      mark.display(os);
+      Mark temp = mark;
+      temp = MARK;
+      temp.display(os);
       if(type != MARK){
          os << ": ";
-         mark.display(os);
+         temp = mark;
+         temp = type;
+         temp.display(os);
       }
       return os;
    }
@@ -156,6 +161,7 @@ namespace seneca {
       char nextChar = '\0';
       bool run = true;
       while (run) {
+         is >> value;
          if (is.fail()) {
             cout << "Invalid integer, try again.\n> ";
             is.clear();
@@ -194,7 +200,7 @@ namespace seneca {
    }
 
    double operator+(double value, const Mark& mark){
-      return value + double(mark);
+      return value + mark.raw();
    }
 
    int operator+(int value, const Mark& mark){
@@ -202,7 +208,7 @@ namespace seneca {
    }
 
    double operator-(double value, const Mark& mark){
-      return value - double(mark);
+      return value - mark.raw();
    }
 
    int operator-(int value, const Mark& mark){
