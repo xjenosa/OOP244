@@ -24,7 +24,7 @@
 #include <cstddef> // for size_t
 
 namespace seneca {
-    const size_t MaximumNumberOfMenuItems = 20;
+    const size_t MaximumNumberOfMenuItems = 20u;
 }
 
 #endif
