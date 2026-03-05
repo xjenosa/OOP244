@@ -18,7 +18,7 @@
 *
 **************************************************************************************/
 
-#include "menu.h"
+#include "Menu.h"
 #include "constants.h"
 
 using namespace std;
