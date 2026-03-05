@@ -40,7 +40,7 @@ namespace seneca {
         } else {
             bool onlySpace = true;
             for (int i = 0; content[i] != '\0' && onlySpace; i++) {
-                if (!(content[i] == ' ' || content[i] == '\t' || content[i] == '\n')) {
+                if (!isspace(content[i])) {
                     onlySpace = false;
                 }
             }
@@ -84,7 +84,7 @@ namespace seneca {
             }
 
             const char* content = m_content;
-            while (*content == ' ' || *content == '\t' || *content == '\n') {
+            while (isspace(*content)) {
                 content++;
             }
             ostr << content;
