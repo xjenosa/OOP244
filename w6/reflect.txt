@@ -1,9 +1,30 @@
-Spelling error m_numCouut supposed to be m_numCount in load function instructions
+/*************************************************************************************
+* OOP244 - 2261
+*
+* Student Name : Maximilian Ali
+* Student Email : mali291@myseneca.ca
+* Workshop #  : 6
+* Course/Section: OOP244/NRA
+*
+* I declare that this assignment is my own work in accordance with the Seneca Academic
+* Policy. No part of this assignment has been copied manually or electronically from/to
+* any other source (including web sites) or distributed to other students.
+*
+* I have done all the coding by myself and only copied the code that my professor
+* provided to complete my workshops and assignments.
+*
+**************************************************************************************/
 
-quite tricky to understand:
+learned:
+- I don't know when to delete the Rule of 3 to prevent copying and when not to use delete. At first I deleted, but then it won't compile before I sent the error message to ChatGPT. AI explained to delete if shallow copy, and allow copying for deep copy. In the case of m_numbers, we are deep copying.
+
+difficulties:
+- quite tricky to understand:
 while (i < m_numCount && file >> m_numbers[i]) {
 instructions:
 While the ifstream object has not failed, keep reading double values from the file into the elements of m_numbers dynamic array (as you do with cin)
 never seen it before.
 
-display function not clear in instructions if we need to set width, and width to how much
+feedback:
+- Spelling error m_numCouut supposed to be m_numCount in load function instructions.
+- Display function not clear in instructions if we need to set width, and width to how much.
