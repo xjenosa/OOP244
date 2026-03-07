@@ -1,0 +1,9 @@
+Spelling error m_numCouut supposed to be m_numCount in load function instructions
+
+quite tricky to understand:
+while (i < m_numCount && file >> m_numbers[i]) {
+instructions:
+While the ifstream object has not failed, keep reading double values from the file into the elements of m_numbers dynamic array (as you do with cin)
+never seen it before.
+
+display function not clear in instructions if we need to set width, and width to how much
