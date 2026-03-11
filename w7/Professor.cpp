@@ -59,8 +59,7 @@ namespace seneca {
 
     ostream& Professor::write(ostream& ostr) const {
         char subjectPrint[21]{};
-        ostr.unsetf(ios::right);
-        ostr << " ";
+        ostr << left << " ";
         Employee::write(ostr);
         if(m_subject) {
             int i;
