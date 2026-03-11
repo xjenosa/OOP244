@@ -55,4 +55,40 @@ namespace seneca {
       return cstring && *cstring == 0;
    }
 
+   int Utils::getInt() {
+      int value;
+      char line;
+      bool run = true;
+      while (run) {
+         cin >> value;
+         if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid integer:" << endl;
+         }
+         else if (cin.get(line) && line != '\n') {
+            cin.ignore(10000, '\n');
+            cout << "Only an integer please:" << endl;
+         }
+         else {
+            run = false;
+         }
+      }
+      return value;
+   }
+
+   int Utils::getInt(int min, int max) {
+      int value;
+      bool run = true;
+      while (run) {
+         value = getInt();
+         if (value < min || value > max) {
+            cout << "Invalid value: [" << min << " <= value <= " << max << "], try again: ";
+         }
+         else {
+            run = false;
+         }
+      }
+      return value;
+   }
 }

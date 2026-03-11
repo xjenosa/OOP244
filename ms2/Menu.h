@@ -53,13 +53,12 @@ namespace seneca {
             size_t indent = 0,
             size_t indentSize = 3);
         ~Menu();
-        Menu(const Menu&) = delete; // delete
-        Menu& operator=(const Menu&) = delete; // delete
+        Menu(const Menu&); // delete
+        Menu& operator=(const Menu&); // delete
         Menu& operator<<(const char* menuItemContent);
         // std::ostream& operator<<(const char* menuItemContent);
         size_t select() const;
     };
     size_t operator<<(std::ostream& ostr, const Menu& m);
-    // std::ostream& operator<<(std::ostream& ostr, const Menu& m);
 }
 #endif

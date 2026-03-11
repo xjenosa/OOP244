@@ -83,12 +83,14 @@ namespace seneca {
         }
         return ostr;
     }
-    Menu::Menu(const char* title, const char* exitOption, size_t indent, size_t indentSize) {
-        m_title = title;
-        m_exitOption = exitOption;
+    Menu::Menu(const char* title, const char* exitOption, size_t indent, size_t indentSize)
+        : m_title(title, indent, indentSize, -1),
+        m_exitOption(exitOption, indent, indentSize, 0),
+        m_prompt("> ", indent, indentSize, -1)
+    {
         m_indent = indent;
         m_indentSize = indentSize;
-        m_prompt = "> ";
+        m_numItems = 0;
         for(size_t i = 0; i < MaximumNumberOfMenuItems; i++) {
             m_items[i] = nullptr;
         }
@@ -100,36 +102,40 @@ namespace seneca {
     }
     Menu& Menu::operator<<(const char* menuItemContent) {
         if (m_numItems < MaximumNumberOfMenuItems) {
-            m_items[m_numItems] = new MenuItem(menuItemContent, m_indent + 1, m_indentSize, (int)m_numItems + 1);
+            m_items[m_numItems] = new MenuItem(menuItemContent, m_indent, m_indentSize, m_numItems + 1);
             m_numItems++;
         }
         return *this;
     }
     size_t Menu::select() const {
         size_t selection = 0;
-        if (m_numItems > 0) {
-            do {
-                cout << *this;
-                cout << m_prompt;
-                cin >> selection;
-                if (cin.fail() || selection < 1 || selection > m_numItems + 1) {
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                    cout << "Invalid Selection, try again: ";
-                } else {
-                    cin.ignore(10000, '\n');
-                    break;
-                }
-            } while (true);
+        if (m_title) {
+            cout << m_title << endl;
         }
+        for(size_t i = 0; i < m_numItems; i++) {
+            cout << m_items[i] << endl;
+        }
+        cout << m_exitOption << endl;
+        cout << m_prompt;
+        do {
+            cin >> selection;
+            if (cin.fail() || selection > m_numItems) {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                // cout << "Invalid Selection, try again: ";
+            }
+            else {
+                cin.ignore(10000, '\n');
+                break;
+            }
+        } while (true);
         return selection;
     }
     size_t operator<<(ostream& ostr, const Menu& m) {
-        m.m_title.display(ostr) << endl;
-        for (size_t i = 0; i < m.m_numItems; i++) {
-            m.m_items[i]->display(ostr) << endl;
+        size_t selection = 0;
+        if (&ostr == &cout) {
+            selection = m.select();
         }
-        m.m_exitOption.display(ostr) << endl;
-        return m.m_numItems + 1;
+        return selection;
     }
 }
