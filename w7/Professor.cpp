@@ -47,18 +47,19 @@ namespace seneca {
     istream& Professor::read(istream& istr) {
         char buffer[1024];
         Employee::read(istr);
+        istr.ignore();
         istr.getline(buffer, 1024, ',');
         size_t len = strlen(buffer);
         delete[] m_subject;
         m_subject = new char[len + 1];
         strcpy(m_subject, buffer);
-        istr >> m_sections; // no?
-        istr.ignore();
+        istr >> m_sections;
         return istr;
     }
 
     ostream& Professor::write(ostream& ostr) const {
         char subjectPrint[21]{};
+        ostr.unsetf(ios::right);
         ostr << " ";
         Employee::write(ostr);
         if(m_subject) {
