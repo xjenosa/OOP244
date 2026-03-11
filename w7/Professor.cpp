@@ -28,7 +28,7 @@ namespace seneca {
         m_sections = 0;
     }
 
-    Professor::Professor(const char* name, char* subject, int sections, size_t employeeNo, double salary) : Employee(name, employeeNo, salary) {
+    Professor::Professor(const char* name, const char* subject, int sections, size_t employeeNo, double salary) : Employee(name, employeeNo, salary) {
         size_t len = strlen(subject);
         m_subject = new char[len + 1];
         strncpy(m_subject, subject, len);

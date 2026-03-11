@@ -27,7 +27,7 @@ namespace seneca{
         double devPay() const;
     public:
         Professor();
-        Professor(const char* name, char* subject, int sections, size_t employeeNo, double salary);
+        Professor(const char* name, const char* subject, int sections, size_t employeeNo, double salary);
         ~Professor();
         std::istream& read(std::istream& istr = std::cin);
         std::ostream& write(std::ostream& ostr = std::cout) const;
