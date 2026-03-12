@@ -70,7 +70,8 @@ namespace seneca {
         }
         ostr << " " << left << setw(20) << subjectPrint << " | "
         << right << setw(5) << m_sections << " | "
-        << fixed << setprecision(2) << setw(8) << devPay() << " |";
+        << fixed << setprecision(2) << setw(8) << devPay() << " |"
+        << left;
         return ostr;
     }
 
