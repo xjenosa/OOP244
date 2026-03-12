@@ -24,6 +24,7 @@
 using namespace std;
 namespace seneca {
     Professor::Professor() {
+        Employee(nullptr, 0, 0.0);
         m_subject = nullptr;
         m_sections = 0;
     }
@@ -59,7 +60,6 @@ namespace seneca {
 
     ostream& Professor::write(ostream& ostr) const {
         char subjectPrint[21]{};
-        ostr << left << " ";
         Employee::write(ostr);
         if(m_subject) {
             int i;
@@ -76,7 +76,7 @@ namespace seneca {
 
     ostream& Professor::title(ostream& ostr) const {
         Employee::title(ostr);
-        ostr << " Teaching Subject | Sec # | $Dev Pay |";
+        ostr << " Teaching Subject     | Sec # | $Dev Pay |";
         return ostr;
     }
 
