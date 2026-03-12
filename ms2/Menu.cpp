@@ -21,6 +21,7 @@
 #include <cstring> // for strlen, strcpy
 #include <iomanip> // for setw
 #include "Menu.h"
+#include "Utils.h"
 #include "constants.h"
 using namespace std;
 namespace seneca {
@@ -98,6 +99,7 @@ namespace seneca {
     Menu::~Menu() {
         for (size_t i = 0; i < m_numItems; i++) {
             delete m_items[i];
+            m_items[i] = nullptr;
         }
     }
     Menu& Menu::operator<<(const char* menuItemContent) {
@@ -110,26 +112,14 @@ namespace seneca {
     size_t Menu::select() const {
         size_t selection = 0;
         if (m_title) {
-            cout << m_title << endl;
+            m_title.display();
         }
         for(size_t i = 0; i < m_numItems; i++) {
-            cout << m_items[i] << endl;
+            m_items[i]->display();
         }
-        cout << m_exitOption << endl;
-        cout << m_prompt;
-        do {
-            cin >> selection;
-            if (cin.fail() || selection > m_numItems) {
-                cin.clear();
-                cin.ignore(10000, '\n');
-                // cout << "Invalid Selection, try again: ";
-            }
-            else {
-                cin.ignore(10000, '\n');
-                break;
-            }
-        } while (true);
-        return selection;
+        m_exitOption.display();
+        m_prompt.display();
+        return ut.getInt(0, m_numItems);
     }
     size_t operator<<(ostream& ostr, const Menu& m) {
         size_t selection = 0;

@@ -64,11 +64,11 @@ namespace seneca {
          if (cin.fail()) {
             cin.clear();
             cin.ignore(10000, '\n');
-            cout << "Invalid integer:" << endl;
+            cout << "Invalid integer:";
          }
          else if (cin.get(line) && line != '\n') {
             cin.ignore(10000, '\n');
-            cout << "Only an integer please:" << endl;
+            cout << "Only an integer please:";
          }
          else {
             run = false;

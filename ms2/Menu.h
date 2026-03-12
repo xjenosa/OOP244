@@ -34,8 +34,8 @@ namespace seneca {
         friend class Menu;
         MenuItem(const char* content = nullptr, size_t indent = 0, size_t indentSize = 0, int row = -1);
         ~MenuItem();
-        MenuItem(const MenuItem&); // delete
-        MenuItem& operator=(const MenuItem&); // delete
+        MenuItem(const MenuItem&) = delete;
+        MenuItem& operator=(const MenuItem&) = delete;
         operator bool() const;
         std::ostream& display(std::ostream& ostr = std::cout) const;
     };
@@ -53,8 +53,8 @@ namespace seneca {
             size_t indent = 0,
             size_t indentSize = 3);
         ~Menu();
-        Menu(const Menu&); // delete
-        Menu& operator=(const Menu&); // delete
+        Menu(const Menu&) = delete;
+        Menu& operator=(const Menu&) = delete;
         Menu& operator<<(const char* menuItemContent);
         // std::ostream& operator<<(const char* menuItemContent);
         size_t select() const;
