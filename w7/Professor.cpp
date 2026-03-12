@@ -59,16 +59,16 @@ namespace seneca {
     }
 
     ostream& Professor::write(ostream& ostr) const {
-        char subjectPrint[21]{};
+        char subject2print[21]{};
         Employee::write(ostr);
         if(m_subject) {
             int i;
             for(i = 0; i < 20 && m_subject[i] != '\0'; i++) {
-                 subjectPrint[i] = m_subject[i];
+                 subject2print[i] = m_subject[i];
             }
-            subjectPrint[i] = '\0';
+            subject2print[i] = '\0';
         }
-        ostr << " " << left << setw(20) << subjectPrint << " | "
+        ostr << " " << left << setw(20) << subject2print << " | "
         << right << setw(5) << m_sections << " | "
         << fixed << setprecision(2) << setw(8) << devPay() << " |"
         << left;
@@ -77,7 +77,7 @@ namespace seneca {
 
     ostream& Professor::title(ostream& ostr) const {
         Employee::title(ostr);
-        ostr << " Teaching Subject     | Sec # | $Dev Pay |";
+        ostr << " " << setw(20) << "Teaching Subject" << "| Sec # | $Dev Pay |";
         return ostr;
     }
 
