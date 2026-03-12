@@ -112,12 +112,12 @@ namespace seneca {
     size_t Menu::select() const {
         size_t selection = 0;
         if (m_title) {
-            m_title.display();
+            m_title.display() << endl;
         }
         for(size_t i = 0; i < m_numItems; i++) {
-            m_items[i]->display();
+            m_items[i]->display() << endl;
         }
-        m_exitOption.display();
+        m_exitOption.display() << endl;
         m_prompt.display();
         return ut.getInt(0, m_numItems);
     }
