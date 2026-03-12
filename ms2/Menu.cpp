@@ -110,7 +110,6 @@ namespace seneca {
         return *this;
     }
     size_t Menu::select() const {
-        size_t selection = 0;
         if (m_title) {
             m_title.display() << endl;
         }
