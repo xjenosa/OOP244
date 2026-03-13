@@ -1,0 +1,26 @@
+/*************************************************************************************
+* OOP244 - 2261
+*
+* Student Name : Maximilian Ali
+* Student Email : mali291@myseneca.ca
+* Workshop #  : 7
+* Course/Section: OOP244/NRA
+*
+* I declare that this assignment is my own work in accordance with the Seneca Academic
+* Policy. No part of this assignment has been copied manually or electronically from/to
+* any other source (including web sites) or distributed to other students.
+*
+* I have done all the coding by myself and only copied the code that my professor
+* provided to complete my workshops and assignments.
+*
+**************************************************************************************/
+
+learned:
+- how to call functions from parent functions. refreshed on how inheritance works, i forgot. basically public functions are available to call. to access private data members then use the public getters and setters?
+
+difficulties:
+- Professor::read function is the most confusing. the instructions just isn't specific enough for the amount of lines it takes to make it
+
+feedback:
+- 5-argument constructor please list the inputs for Employee constructor in order for us to not miss anything
+- no instructions for setting the width of Professor::title function, made it not match with the output requirements of matrix

@@ -77,7 +77,7 @@ namespace seneca {
 
     ostream& Professor::title(ostream& ostr) const {
         Employee::title(ostr);
-        ostr << " " << left << setw(21) << "Teaching Subject" << "| Sec # | $Dev Pay |";
+        ostr << left << setw(22) << " Teaching Subject" << "| Sec # | $Dev Pay |";
         return ostr;
     }
 
